@@ -1,0 +1,5 @@
+{
+  "name": "Fraud Prevention Module",
+  "description": "A high-fidelity replica of the Fraud Prevention Module dashboard featuring alert management, transaction details, and AI triggers.",
+  "requestFramePermissions": []
+}
