@@ -1,3 +1,4 @@
+
 export enum AlertStatus {
   PENDING = 'PENDING',
   CONFIRMED_FRAUD = 'CONFIRMED_FRAUD',
@@ -6,17 +7,38 @@ export enum AlertStatus {
 
 export interface Alert {
   id: string;
+  source: 'AI' | 'RB' | 'IC';
+  status: AlertStatus;
+  feedback?: string;
+  alertData?: string; 
+  alertDate?: string;
+  // Transaction Joined Data
   trnCode: string;
-  customerName: string;
-  cif: string;
   date: string;
   time: string;
   type: string;
-  country: string;
   amount: number;
   currency: string;
-  source: 'AI' | 'RB';
-  status: AlertStatus;
+  country: string;
+  channel: string;
+  merchantName: string;
+  merchantType?: string;
+  posNumber?: string;
+  atmNumber?: string;
+  websiteUrl?: string;
+  // Account/Customer Joined Data
+  accountNo: string;
+  accountType: string;
+  customerName: string;
+  cif: string;
+  // New Database Fields from customers table
+  segment?: string;
+  gender?: string;
+  dob?: string;
+  nationality?: string;
+  memberSince?: string;
+  mobile?: string;
+  branch?: string;
 }
 
 export interface TransactionDetail {

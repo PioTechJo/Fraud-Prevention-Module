@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +16,8 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            position: fixed; /* Lock viewport and prevent pull-to-refresh / bounce */
-            overscroll-behavior: none; /* Prevent bounce effects on scroll boundaries */
+            position: fixed;
+            overscroll-behavior: none;
         }
         
         #root {
@@ -24,7 +25,6 @@
             width: 100%;
         }
 
-        /* Custom scrollbar to match the clean UI */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -39,28 +39,23 @@
             background: #a1a1a1;
         }
 
-        /* Utility to hide scrollbar while keeping scroll functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        /* Remove arrows from number inputs (CIF, Amount, etc.) */
-        /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
-        /* Firefox */
         input[type=number] {
           -moz-appearance: textfield;
         }
 
-        /* Style native date/time picker icons */
         input[type="date"]::-webkit-calendar-picker-indicator,
         input[type="time"]::-webkit-calendar-picker-indicator {
             cursor: pointer;
@@ -76,7 +71,8 @@
     "react": "https://esm.sh/react@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.39.0"
   }
 }
 </script>

@@ -1,89 +1,64 @@
 import React from 'react';
-import { 
-  Home, 
-  LineChart,
-  Settings,
-  SlidersHorizontal
-} from 'lucide-react';
+import { Home, LineChart, Settings, SlidersHorizontal } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  language: 'EN' | 'AR';
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
-  const tooltipClass = "absolute left-full ml-2 px-2 py-1 bg-[#FFFBEB] text-[#0056D2] text-[8px] font-bold rounded border border-yellow-200 shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50";
+const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, language }) => {
+  const isAr = language === 'AR';
+  const tooltipClass = `absolute ${isAr ? 'right-full mr-2' : 'left-full ml-2'} px-2 py-1 bg-[#FFFBEB] text-[#0056D2] ${isAr ? 'text-[11px]' : 'text-[9px]'} font-semibold rounded border border-yellow-200 shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-[9999]`;
+  const iconSize = 21.5;
+  const strokeWidth = 1.5;
+
+  const labels = {
+    home: isAr ? 'الرئيسية' : 'Home',
+    business: isAr ? 'خصائص العمل' : 'Business Attributes',
+    analytics: isAr ? 'تحليلات التنبيهات' : 'Alerts Analytics',
+    settings: isAr ? 'الإعدادات' : 'Settings'
+  };
 
   return (
     <nav 
-      className="w-12 flex flex-col items-center py-4 gap-4 shrink-0 h-full rounded-lg shadow-sm z-20"
+      className="w-14 flex flex-col items-center pt-7 pb-4 gap-7 shrink-0 h-full rounded-lg shadow-sm z-20"
       style={{ background: 'linear-gradient(to bottom, #002060 0%, #002060 40%, #0037A4 100%)' }}
     >
-      {/* First Page: Home */}
       <div className="relative group flex items-center">
-        <button
-          onClick={() => setActiveTab('alerts')}
-          className={`p-1 rounded-md transition-all ${
-            activeTab === 'alerts' 
-              ? 'bg-[#0056D2] text-white shadow-inner scale-105' 
-              : 'text-white hover:bg-white/10'
-          }`}
-        >
-          <Home size={17.5} strokeWidth={1.5} />
+        <button onClick={() => setActiveTab('alerts')} className={`p-2 rounded-md transition-all ${activeTab === 'alerts' ? 'bg-[#0056D2] text-white' : 'text-white'}`}>
+          <Home size={iconSize} strokeWidth={strokeWidth} />
         </button>
         <div className={tooltipClass}>
-          Home
-          <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] border-l border-b border-yellow-200 rotate-45" />
+          {labels.home}
+          <div className={`absolute top-1/2 ${isAr ? '-right-1' : '-left-1'} -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] ${isAr ? 'border-r border-t' : 'border-l border-b'} border-yellow-200 rotate-45`} />
         </div>
       </div>
-
-      {/* Second Page: Business Attributes */}
       <div className="relative group flex items-center">
-        <button
-          onClick={() => setActiveTab('businessAttributes')}
-          className={`p-1 rounded-md transition-all ${
-            activeTab === 'businessAttributes' 
-              ? 'bg-[#0056D2] text-white shadow-inner scale-105' 
-              : 'text-white hover:bg-white/10'
-          }`}
-        >
-          <SlidersHorizontal size={17.5} strokeWidth={1.5} />
+        <button onClick={() => setActiveTab('businessAttributes')} className={`p-2 rounded-md transition-all ${activeTab === 'businessAttributes' ? 'bg-[#0056D2] text-white' : 'text-white'}`}>
+          <SlidersHorizontal size={iconSize} strokeWidth={strokeWidth} />
         </button>
         <div className={tooltipClass}>
-          Business Attributes
-          <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] border-l border-b border-yellow-200 rotate-45" />
+          {labels.business}
+          <div className={`absolute top-1/2 ${isAr ? '-right-1' : '-left-1'} -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] ${isAr ? 'border-r border-t' : 'border-l border-b'} border-yellow-200 rotate-45`} />
         </div>
       </div>
-
-      {/* Third Page: Alerts Analytics */}
       <div className="relative group flex items-center">
-        <button
-          onClick={() => setActiveTab('alertsAnalytics')}
-          className={`p-1 rounded-md transition-all ${
-            activeTab === 'alertsAnalytics' 
-              ? 'bg-[#0056D2] text-white shadow-inner scale-105' 
-              : 'text-white hover:bg-white/10'
-          }`}
-        >
-          <LineChart size={17.5} strokeWidth={1.5} />
+        <button onClick={() => setActiveTab('alertsAnalytics')} className={`p-2 rounded-md transition-all ${activeTab === 'alertsAnalytics' ? 'bg-[#0056D2] text-white' : 'text-white'}`}>
+          <LineChart size={iconSize} strokeWidth={strokeWidth} />
         </button>
         <div className={tooltipClass}>
-          Alerts Analytics
-          <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] border-l border-b border-yellow-200 rotate-45" />
+          {labels.analytics}
+          <div className={`absolute top-1/2 ${isAr ? '-right-1' : '-left-1'} -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] ${isAr ? 'border-r border-t' : 'border-l border-b'} border-yellow-200 rotate-45`} />
         </div>
       </div>
-
-      {/* Bottom Section: Settings */}
       <div className="mt-auto mb-2 relative group flex items-center">
-        <button 
-          onClick={() => setActiveTab('settings')}
-          className={`p-1 text-white hover:bg-white/10 transition-colors rounded-md ${activeTab === 'settings' ? 'bg-[#0056D2]' : ''}`}
-        >
-          <Settings size={17.5} strokeWidth={1.5} />
+        <button onClick={() => setActiveTab('settings')} className={`p-2 rounded-md transition-all ${activeTab === 'settings' ? 'bg-[#0056D2] text-white' : 'text-white'}`}>
+          <Settings size={iconSize} strokeWidth={strokeWidth} />
         </button>
         <div className={tooltipClass}>
-          Settings
-          <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] border-l border-b border-yellow-200 rotate-45" />
+          {labels.settings}
+          <div className={`absolute top-1/2 ${isAr ? '-right-1' : '-left-1'} -translate-y-1/2 w-2 h-2 bg-[#FFFBEB] ${isAr ? 'border-r border-t' : 'border-l border-b'} border-yellow-200 rotate-45`} />
         </div>
       </div>
     </nav>
